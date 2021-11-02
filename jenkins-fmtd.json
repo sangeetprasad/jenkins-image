@@ -32,8 +32,9 @@
     }
   ],
   "variables": {
-    "aws_access_key": "AKIA3WLWFECNHWQCUWVR",
-    "aws_secret_key": "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"
+    "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
+    "aws_region": "{{ env `AWS_REGION` }}"
   }
 }
 
