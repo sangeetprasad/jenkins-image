@@ -13,9 +13,10 @@ ansiColor('xterm') {
             sh "packer validate jenkins.json"
         }
         stage('Build') {
-            withCredentials([usernamePassword(credentialsId: 'aws_access_keys', usernameVariable: 'AWS_ACCESS_KEY', passwordVariable: 'AWS_SECRET_KEY')]) {
+            //withCredentials([usernamePassword(credentialsId: 'aws_access_keys', usernameVariable: 'AWS_ACCESS_KEY', passwordVariable: 'AWS_SECRET_KEY')]) {
+            withAWS(credentials: 'sam-jenkins-demo-credentials', region: 'eu-east-1') 
             // Run the packer build
-            sh "packer build -var 'aws_region=us-west-2' jenkins.json"
+            sh "packer build -var 'aws_region=eu-east-1' jenkins.json"
             }
         }
         stage('Store Artifacts') {
